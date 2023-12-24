@@ -1,18 +1,40 @@
 {
-  "name": "nuxt-3-website-and-blog",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
-  },
-  "devDependencies": {
-    "@nuxt/devtools": "latest",
-    "nuxt": "^3.8.2",
-    "vue": "^3.3.12",
-    "vue-router": "^4.2.5"
-  }
+	"name": "nuxt-3-website-and-blog",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"build": "nuxt build",
+		"dev": "nuxt dev",
+		"generate": "nuxt generate",
+		"preview": "nuxt preview",
+		"postinstall": "nuxt prepare",
+		"lint:js": "eslint --ext \".js,.ts,.vue\" --ignore-path .gitignore .",
+		"lint:style": "stylelint \"**/*.{vue,css}\" --ignore-path .gitignore",
+		"lint": "npm run lint:js && npm run lint:style",
+		"lintfix": "prettier --write --list-different . && npm run lint:js --fix  && npm run lint:style"
+	},
+	"devDependencies": {
+		"@iconify-json/heroicons": "^1.1.15",
+		"@nuxt/devtools": "latest",
+		"@nuxtjs/eslint-config-typescript": "^12.1.0",
+		"@nuxtjs/eslint-module": "^4.1.0",
+		"@nuxtjs/stylelint-module": "^5.1.0",
+		"@typescript-eslint/parser": "^6.13.2",
+		"eslint": "^8.55.0",
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-plugin-prettier": "^5.0.1",
+		"nuxt": "^3.8.2",
+		"postcss-html": "^1.5.0",
+		"prettier": "^3.1.0",
+		"sass": "^1.69.5",
+		"stylelint": "^15.11.0",
+		"stylelint-config-standard-scss": "^11.1.0",
+		"stylelint-prettier": "^4.1.0",
+		"vue": "^3.3.10",
+		"vue-eslint-parser": "^9.3.2",
+		"vue-router": "^4.2.5"
+	},
+	"dependencies": {
+		"@nuxt/ui": "^2.11.0"
+	}
 }
