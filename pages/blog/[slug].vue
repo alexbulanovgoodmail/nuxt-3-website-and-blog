@@ -46,7 +46,12 @@ const route = useRoute()
 				</div>
 			</div>
 			<div class="post__footer">
-				<div>Форма</div>
+				<div class="post__comments">
+					<PostComment v-for="(comment, i) in 4" :key="i" :comment="{}" />
+				</div>
+				<!-- <div v-else class="post__comments">Пока без комментариев</div> -->
+
+				<div class="post__comment-form">Форма</div>
 			</div>
 		</UContainer>
 	</article>
