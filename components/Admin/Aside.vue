@@ -47,9 +47,7 @@ function handleNavigation(event: Event) {
 			</template>
 		</UVerticalNavigation>
 
-		<UButton color="red" icon="i-heroicons-arrow-left-start-on-rectangle-solid"
-			>Выйти</UButton
-		>
+		<AdminLogout />
 	</div>
 </template>
 

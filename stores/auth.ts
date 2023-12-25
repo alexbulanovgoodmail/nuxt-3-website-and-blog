@@ -21,6 +21,14 @@ export const useAuthStore = defineStore('auth', {
 			})
 
 			this.token = response
+		},
+
+		async logout() {
+			await new Promise(resolve => {
+				setTimeout(() => resolve(true), 2000)
+			})
+
+			this.token = null
 		}
 	},
 

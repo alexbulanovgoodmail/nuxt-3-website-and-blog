@@ -8,7 +8,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
 		return navigateTo({
 			path: '/admin/login/',
 			query: {
-				message: 'Для начала войдите в систему'
+				message: 'login'
 			}
 		})
 	}
