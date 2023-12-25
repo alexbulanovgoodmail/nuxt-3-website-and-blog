@@ -48,11 +48,11 @@ async function onSubmit(event: FormSubmitEvent<any>) {
 	>
 		<p class="comment-form__title">Оставить комментарий</p>
 		<UFormGroup label="Ваше имя" name="name">
-			<UInput v-model="state.name" />
+			<UInput v-model="state.name" :disabled="isLoading" />
 		</UFormGroup>
 
 		<UFormGroup label="Комментарий" name="message">
-			<UTextarea v-model="state.message" />
+			<UTextarea v-model="state.message" :disabled="isLoading" />
 		</UFormGroup>
 
 		<UButton type="submit" :loading="isLoading"> Отправить </UButton>
@@ -62,7 +62,7 @@ async function onSubmit(event: FormSubmitEvent<any>) {
 <style lang="scss" scoped>
 .comment-form {
 	&__title {
-		@apply mb-6 text-2xl;
+		@apply mb-2 text-2xl text-center;
 	}
 }
 </style>
