@@ -1,18 +1,32 @@
 <script setup lang="ts">
 import type { FormError, FormSubmitEvent } from '#ui/types'
+import { storeToRefs } from 'pinia'
+import { useAuthStore } from '@/stores/auth'
 
-const state = reactive({
-	email: undefined,
-	password: undefined
+interface Form {
+	email: string
+	password: string
+}
+
+const form = reactive<Form>({
+	email: '',
+	password: ''
 })
 
-const validate = (state: any): FormError[] => {
+const validate = (form: any): FormError[] => {
 	const errors = []
-	if (!state.email) errors.push({ path: 'email', message: 'Обязательное поле' })
-	if (!state.password)
+	if (!form.email) errors.push({ path: 'email', message: 'Обязательное поле' })
+	if (!form.password)
 		errors.push({ path: 'password', message: 'Обязательное поле' })
 	return errors
 }
+
+const { login } = useAuthStore()
+const { isAuthenticated } = storeToRefs(useAuthStore())
+
+const emits = defineEmits<{
+	(e: 'on-success'): void
+}>()
 
 const isLoading = ref<boolean>(false)
 
@@ -20,10 +34,11 @@ async function onSubmit(event: FormSubmitEvent<any>) {
 	try {
 		isLoading.value = true
 
-		await setTimeout(() => {
-			console.log(event.data)
-			isLoading.value = false
-		}, 2000)
+		await login(form)
+
+		isLoading.value = false
+
+		emits('on-success')
 	} catch (error) {
 		// TODO: Ошибки
 
@@ -37,19 +52,20 @@ async function onSubmit(event: FormSubmitEvent<any>) {
 		<template #header>
 			<p class="admin-login__title">Войти</p>
 
+			{{ isAuthenticated }}
 			<UForm
 				:validate="validate"
-				:state="state"
+				:state="form"
 				class="space-y-4"
 				@submit="onSubmit"
 			>
 				<UFormGroup label="Почта" name="email">
-					<UInput v-model="state.email" :disabled="isLoading" />
+					<UInput v-model="form.email" :disabled="isLoading" />
 				</UFormGroup>
 
 				<UFormGroup label="Пароль" name="password">
 					<UInput
-						v-model="state.password"
+						v-model="form.password"
 						type="password"
 						:disabled="isLoading"
 					/>

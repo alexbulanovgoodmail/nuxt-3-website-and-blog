@@ -58,7 +58,7 @@ const isShowCommentForm = ref<boolean>(true)
 				</div>
 
 				<div v-if="isShowCommentForm" class="post__comment-form">
-					<CommentForm @submit-success="() => (isShowCommentForm = false)" />
+					<CommentForm @on-success="() => (isShowCommentForm = false)" />
 				</div>
 			</div>
 		</UContainer>

@@ -7,7 +7,7 @@ definePageMeta({
 <template>
 	<div>
 		<UContainer>
-			<AdminLogin />
+			<AdminLogin @on-success="() => navigateTo('/admin/')" />
 		</UContainer>
 	</div>
 </template>

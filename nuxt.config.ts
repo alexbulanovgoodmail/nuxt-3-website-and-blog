@@ -6,7 +6,12 @@ export default defineNuxtConfig({
 		pageTransition: { name: 'page', mode: 'out-in' }
 	},
 
-	modules: ['@nuxtjs/eslint-module', '@nuxtjs/stylelint-module', '@nuxt/ui'],
+	modules: [
+		'@nuxtjs/eslint-module',
+		'@nuxtjs/stylelint-module',
+		'@nuxt/ui',
+		'@pinia/nuxt'
+	],
 
 	eslint: {
 		failOnError: true

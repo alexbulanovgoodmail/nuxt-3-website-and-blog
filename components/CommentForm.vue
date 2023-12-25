@@ -1,9 +1,14 @@
 <script setup lang="ts">
 import type { FormError, FormSubmitEvent } from '#ui/types'
 
-const state = reactive({
-	name: undefined,
-	message: undefined
+interface Form {
+	name: string
+	message: string
+}
+
+const state = reactive<Form>({
+	name: '',
+	message: ''
 })
 
 const validate = (state: any): FormError[] => {
@@ -15,7 +20,7 @@ const validate = (state: any): FormError[] => {
 }
 
 const emits = defineEmits<{
-	(e: 'submit-success'): void
+	(e: 'on-success'): void
 }>()
 
 const isLoading = ref<boolean>(false)
@@ -28,7 +33,7 @@ async function onSubmit(event: FormSubmitEvent<any>) {
 		await setTimeout(() => {
 			console.log(event.data)
 			isLoading.value = false
-			emits('submit-success')
+			emits('on-success')
 		}, 2000)
 		toast.add({ title: 'Комментарий добавлен' })
 	} catch (error) {

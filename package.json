@@ -35,6 +35,11 @@
 		"vue-router": "^4.2.5"
 	},
 	"dependencies": {
-		"@nuxt/ui": "^2.11.0"
+		"@nuxt/ui": "^2.11.0",
+		"@pinia/nuxt": "^0.5.1",
+		"pinia": "^2.1.7"
+	},
+	"overrides": {
+		"vue": "latest"
 	}
 }
