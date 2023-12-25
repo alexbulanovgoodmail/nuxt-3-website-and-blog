@@ -17,7 +17,9 @@ const isOpen = ref(false)
 				<UButton label="Закрыть" @click="isOpen = false" />
 			</div>
 			<div class="p-4 flex-1">
-				<div class="h-full"></div>
+				<div class="h-full">
+					<AdminAside @on-navigation="() => (isOpen = false)" />
+				</div>
 			</div>
 		</USlideover>
 	</div>
