@@ -2,6 +2,10 @@
 export default defineNuxtConfig({
 	devtools: { enabled: true },
 
+	app: {
+		pageTransition: { name: 'page', mode: 'out-in' }
+	},
+
 	modules: ['@nuxtjs/eslint-module', '@nuxtjs/stylelint-module', '@nuxt/ui'],
 
 	eslint: {
