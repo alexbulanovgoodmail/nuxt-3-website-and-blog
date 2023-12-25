@@ -7,6 +7,9 @@ export default defineAppConfig({
 		},
 		button: {
 			rounded: 'rounded-none'
+		},
+		card: {
+			body: 'p-0'
 		}
 	}
 })
