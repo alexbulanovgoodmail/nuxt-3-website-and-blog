@@ -27,7 +27,7 @@ const emits = defineEmits<{
 }>()
 
 const isLoading = ref<boolean>(false)
-
+const authError = ref<string | null>(null)
 async function onSubmit(event: FormSubmitEvent<any>) {
 	try {
 		isLoading.value = true
@@ -37,8 +37,9 @@ async function onSubmit(event: FormSubmitEvent<any>) {
 		isLoading.value = false
 
 		emits('on-success')
-	} catch (error) {
+	} catch (error: any) {
 		// TODO: Ошибки
+		authError.value = error.message
 
 		isLoading.value = false
 	}
@@ -67,6 +68,10 @@ async function onSubmit(event: FormSubmitEvent<any>) {
 					/>
 				</UFormGroup>
 
+				<div v-if="authError" class="admin-login__error text-xs text-red-600">
+					{{ authError }}
+				</div>
+
 				<UButton block type="submit" :loading="isLoading"> Войти </UButton>
 			</UForm>
 		</template>
@@ -78,7 +83,7 @@ async function onSubmit(event: FormSubmitEvent<any>) {
 	@apply mx-auto sm:max-w-[380px];
 
 	&__title {
-		@apply mb-2 text-2xl text-center;
+		@apply mb-2 text-xl text-center;
 	}
 }
 </style>

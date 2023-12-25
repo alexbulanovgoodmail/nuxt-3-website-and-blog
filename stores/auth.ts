@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { useMainStore } from '@/stores/main'
 
 interface Credentials {
 	email: string
@@ -6,21 +7,32 @@ interface Credentials {
 }
 
 export interface AuthState {
-	token: string | null
+	_token: string | null
 }
 
 export const useAuthStore = defineStore('auth', {
 	state: (): AuthState => ({
-		token: null
+		_token: null
 	}),
 
 	actions: {
 		async login(credentials: Credentials) {
-			const response: string = await new Promise(resolve => {
-				setTimeout(() => resolve('mock-token'), 2000)
-			})
+			try {
+				const { clearError } = useMainStore()
+				clearError()
 
-			this.token = response
+				const response: string = await new Promise((resolve, reject) => {
+					setTimeout(() => resolve('mock-token'), 2000)
+					// setTimeout(() => reject(new Error('Ошибка авторизации')), 2000)
+				})
+
+				this._token = response
+			} catch (e) {
+				const { setError } = useMainStore()
+				setError(e)
+
+				throw e
+			}
 		},
 
 		async logout() {
@@ -28,11 +40,11 @@ export const useAuthStore = defineStore('auth', {
 				setTimeout(() => resolve(true), 2000)
 			})
 
-			this.token = null
+			this._token = null
 		}
 	},
 
 	getters: {
-		isAuthenticated: state => Boolean(state.token)
+		isAuthenticated: state => Boolean(state._token)
 	}
 })

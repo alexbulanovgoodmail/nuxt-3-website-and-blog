@@ -67,7 +67,7 @@ async function onSubmit(event: FormSubmitEvent<any>) {
 <style lang="scss" scoped>
 .comment-form {
 	&__title {
-		@apply mb-2 text-2xl text-center;
+		@apply mb-2 text-xl text-center;
 	}
 }
 </style>
