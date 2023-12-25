@@ -11,8 +11,8 @@ function handleOpenPost() {
 	<UCard class="post-card">
 		<template #header>
 			<div class="post-card__header">
-				<p>POST title</p>
-				<small>20.12.2023, 17:47:37</small>
+				<p class="post-card__title">POST title</p>
+				<small class="post-card__date">20.12.2023, 17:47:37</small>
 			</div>
 		</template>
 
@@ -27,7 +27,9 @@ function handleOpenPost() {
 
 		<template #footer>
 			<div class="post-card__footer">
-				<UButton @click="handleOpenPost">Смотреть</UButton>
+				<UButton class="post-card__btn" @click="handleOpenPost"
+					>Смотреть</UButton
+				>
 
 				<div class="post-card__comments">
 					<UIcon name="i-heroicons-chat-bubble-bottom-center-text" />
