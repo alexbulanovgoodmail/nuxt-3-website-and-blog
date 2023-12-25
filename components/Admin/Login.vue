@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { FormError, FormSubmitEvent } from '#ui/types'
-import { storeToRefs } from 'pinia'
 import { useAuthStore } from '@/stores/auth'
 
 interface Form {
@@ -22,7 +21,6 @@ const validate = (form: any): FormError[] => {
 }
 
 const { login } = useAuthStore()
-const { isAuthenticated } = storeToRefs(useAuthStore())
 
 const emits = defineEmits<{
 	(e: 'on-success'): void
@@ -51,8 +49,6 @@ async function onSubmit(event: FormSubmitEvent<any>) {
 	<UCard class="admin-login">
 		<template #header>
 			<p class="admin-login__title">Войти</p>
-
-			{{ isAuthenticated }}
 			<UForm
 				:validate="validate"
 				:state="form"
