@@ -1,5 +1,7 @@
 <script setup lang="ts">
 const route = useRoute()
+
+const isShowCommentForm = ref<boolean>(true)
 </script>
 
 <template>
@@ -55,8 +57,8 @@ const route = useRoute()
 					<p class="post__comments-title">Пока без комментариев</p>
 				</div>
 
-				<div class="post__comment-form">
-					<CommentForm />
+				<div v-if="isShowCommentForm" class="post__comment-form">
+					<CommentForm @submit-success="() => (isShowCommentForm = false)" />
 				</div>
 			</div>
 		</UContainer>

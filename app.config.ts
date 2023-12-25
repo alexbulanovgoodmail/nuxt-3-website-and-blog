@@ -10,6 +10,10 @@ export default defineAppConfig({
 		},
 		card: {
 			body: 'p-0'
+		},
+		notifications: {
+			// Show toasts at the top right of the screen
+			position: 'top-0 left-1/2 bottom-auto -translate-x-1/2'
 		}
 	}
 })

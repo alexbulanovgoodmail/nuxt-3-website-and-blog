@@ -14,7 +14,12 @@ const validate = (state: any): FormError[] => {
 	return errors
 }
 
+const emits = defineEmits<{
+	(e: 'submit-success'): void
+}>()
+
 const isLoading = ref<boolean>(false)
+const toast = useToast()
 
 async function onSubmit(event: FormSubmitEvent<any>) {
 	try {
@@ -23,8 +28,12 @@ async function onSubmit(event: FormSubmitEvent<any>) {
 		await setTimeout(() => {
 			console.log(event.data)
 			isLoading.value = false
+			emits('submit-success')
 		}, 2000)
+		toast.add({ title: 'Комментарий добавлен' })
 	} catch (error) {
+		// TODO: Ошибки
+		// toast.add({ color: 'red', title: 'Ошибка' })
 		isLoading.value = false
 	}
 }
