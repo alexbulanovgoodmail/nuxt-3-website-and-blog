@@ -10,6 +10,7 @@ const route = useRoute()
 					color="black"
 					icon="i-heroicons-arrow-uturn-left"
 					variant="link"
+					@click="navigateTo('/blog/')"
 					>Назад</UButton
 				>
 				<div class="post__info">
@@ -46,12 +47,17 @@ const route = useRoute()
 				</div>
 			</div>
 			<div class="post__footer">
-				<div class="post__comments">
+				<div v-if="true" class="post__comments">
+					<p class="post__comments-title">Комментарии:</p>
 					<PostComment v-for="(comment, i) in 4" :key="i" :comment="{}" />
 				</div>
-				<!-- <div v-else class="post__comments">Пока без комментариев</div> -->
+				<div v-else class="post__comments">
+					<p class="post__comments-title">Пока без комментариев</p>
+				</div>
 
-				<div class="post__comment-form">Форма</div>
+				<div class="post__comment-form">
+					<CommentForm />
+				</div>
 			</div>
 		</UContainer>
 	</article>
@@ -114,6 +120,14 @@ const route = useRoute()
 		p + p {
 			@apply mt-2;
 		}
+	}
+
+	&__comments-title {
+		@apply mb-4;
+	}
+
+	&__comment-form {
+		@apply mx-auto max-w-[480px];
 	}
 }
 </style>
