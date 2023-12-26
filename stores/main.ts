@@ -1,11 +1,11 @@
 import { defineStore } from 'pinia'
 
-export interface AuthState {
+export interface MainState {
 	_error: any
 }
 
 export const useMainStore = defineStore('main', {
-	state: (): AuthState => ({
+	state: (): MainState => ({
 		_error: null
 	}),
 

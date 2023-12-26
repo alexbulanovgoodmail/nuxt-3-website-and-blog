@@ -12,7 +12,7 @@ export interface AuthState {
 
 export const useAuthStore = defineStore('auth', {
 	state: (): AuthState => ({
-		_token: null
+		_token: true
 	}),
 
 	actions: {
@@ -35,12 +35,27 @@ export const useAuthStore = defineStore('auth', {
 			}
 		},
 
-		async logout() {
+		async logout(credentials: Credentials) {
 			await new Promise(resolve => {
 				setTimeout(() => resolve(true), 2000)
 			})
 
 			this._token = null
+		},
+
+		async create() {
+			try {
+				await new Promise(resolve => {
+					setTimeout(() => resolve(true), 2000)
+				})
+
+				console.log('пользователь добавлен')
+			} catch (e) {
+				const { setError } = useMainStore()
+				setError(e)
+
+				throw e
+			}
 		}
 	},
 
