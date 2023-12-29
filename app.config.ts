@@ -9,6 +9,7 @@ export default defineAppConfig({
 			rounded: 'rounded-none'
 		},
 		card: {
+			rounded: 'rounded-none',
 			body: 'p-0'
 		},
 		notifications: {

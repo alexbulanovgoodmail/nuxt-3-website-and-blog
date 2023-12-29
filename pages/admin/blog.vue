@@ -46,17 +46,64 @@ const items = row => [
 	]
 ]
 
-function removePost(id: number) {
-	console.log('Delete', id)
+function editPost(id: number) {
+	navigateTo(`/admin/post/${id}`)
 }
 
-function editPost(id: number) {
-	console.log('Edit', id)
+const isOpen = ref<boolean>(false)
+const removePostId = ref<number | undefined>(undefined)
+
+function removePost(id: number) {
+	isOpen.value = true
+	removePostId.value = id
 }
+
+const toast = useToast()
+async function handleConfirmDeletion() {
+	// TODO логика удаления
+
+	posts.value = posts.value?.filter(p => p.id !== removePostId.value)
+	await toast.add({ title: 'Запись успешно удалена' })
+
+	isOpen.value = false
+}
+
+function handleRejectDeletion() {
+	isOpen.value = false
+	removePostId.value = undefined
+}
+
+watch(isOpen, newValue => {
+	if (newValue === false) {
+		removePostId.value = undefined
+	}
+})
 </script>
 
 <template>
 	<div>
+		<UModal v-model="isOpen">
+			<div class="p-4">
+				<p class="mb-6 text-xl text-center">Удалить эту запись</p>
+
+				<div class="grid grid-cols-2 gap-4">
+					<UButton
+						block
+						color="red"
+						label="Да"
+						@click="handleConfirmDeletion"
+					/>
+
+					<UButton
+						block
+						color="gray"
+						label="Отмена"
+						@click="handleRejectDeletion"
+					/>
+				</div>
+			</div>
+		</UModal>
+
 		<UContainer>
 			<UTable
 				:rows="posts"
