@@ -4,7 +4,7 @@ definePageMeta({
 	middleware: 'auth'
 })
 
-const { pending, data: posts } = useLazyFetch('/api/admin-posts/')
+const { pending, data: posts } = useLazyFetch('/api/admin/blog/')
 
 const columns = [
 	{
